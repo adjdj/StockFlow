@@ -1,4 +1,7 @@
-# 0) Установка под Ubuntu (через консоль)
+# StokFlow
+## StokFlowBackend
+## StokFlowFrontend
+# Порядок действий для первоначальной настройки проекта
 ## 0.1 .NET 8 SDK
 sudo apt-get update
 sudo apt-get install -y wget gpg apt-transport-https
