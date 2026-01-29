@@ -1,0 +1,207 @@
+## Собранные файлы и папки
+bin/
+obj/
+
+## Выходные данные публикации
+publish/
+[Pp]ublish/
+
+## Пакеты NuGet
+packages/
+*.nupkg
+
+## Файлы решений и проектов
+*.sln
+*.csproj.user
+*.vbproj.user
+*.fsproj.user
+
+## Локальные настройки Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Резервные копии
+*.[Bb]ackup
+*.bak
+
+## Логи и временные файлы
+*.log
+[Tt]emp/
+[Tt]mp/
+
+## Файлы настроек IDE
+*.swp
+*.swo
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyzw
+
+## Результаты тестирования
+TestResults/
+*.testsettings
+*.runsettings
+
+## Покрытие кода
+coverage.xml
+coverage.json
+coverage/
+
+## Файлы анализаторов и линтеров
+.sonarlint/
+.editorconfig
+
+## macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+## Linux
+.fuse_hidden*
+.directory
+.Trash-*
+
+## Временные файлы браузера
+*.swc
+
+## Файлы паролей и секретов (никогда не храните в репозитории!)
+*.pfx
+*.snk
+secrets.json
+appsettings.*.json
+!appsettings.json
+
+## Docker
+.dockerignore
+docker-compose.override.yml
+
+## Node.js (если используются npm/yarn)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+## Python (если есть скрипты)
+__pycache__/
+*.py[cod]
+*$py.class
+
+## Java (если есть зависимости)
+*.class
+*.war
+*.ear
+*.jar
+
+## Другие временные файлы
+*.tmp
+*.temp
+*.out
+*.pid
+*.seed
+*.pid.lock
+
+## Файлы локального запуска
+.env
+.venv
+env/
+venv/
+ENV/
+
+## Кэши
+.cache/
+.gradle/
+.m2/
+
+## Инструменты сборки
+*.msbuild
+*.msbuild.log
+
+## Артефакты CI/CD
+.github/workflows/secrets.yml
+.gitlab-ci.yml
+.travis.yml
+
+## Пользовательские настройки
+*.user.config
+*.userprefs
+
+## Резервные копии VS Code
+.history/
+.ionide/
+
+## Файлы отладки
+*.pdb
+*.mdb
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.ipdb
+
+## Двоичные файлы
+*.dll
+*.exe
+*.lib
+*.a
+*.so
+*.dylib
+*.dll.config
+
+## Файлы ресурсов
+*.resx
+*.resources
+
+## Документы и медиа
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.mov
+*.flv
+*.wmv
+
+## Архивы
+*.zip
+*.tar
+*.gz
+*.bz2
+*.7z
+*.rar
+
+## Виртуальные машины и контейнеры
+*.vmdk
+*.ova
+*.vdi
+*.vbox
+*.vmx
+
+## Прочие временные файлы
+*.lock
+*.tmp
+*.temp
