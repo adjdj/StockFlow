@@ -22,7 +22,17 @@ builder.Services.AddScoped<CreateResourceService>();
 builder.Services.AddScoped<GetResourcesService>();
 builder.Services.AddScoped<DeleteResourceService>();
 
+builder.Services.AddCors(options =>
+{
+options.AddDefaultPolicy(policy =>
+policy.AllowAnyOrigin()
+.AllowAnyHeader()
+.AllowAnyMethod());
+});
+
 var app = builder.Build();
+
+app.UseCors();
 
 // Middleware
 
