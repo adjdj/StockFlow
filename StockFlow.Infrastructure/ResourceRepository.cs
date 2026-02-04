@@ -30,4 +30,21 @@ public class ResourceRepository : IResourceRepository {
     public async Task<IReadOnlyList<Resource>> GetAllAsync() {
         return await _db.Resources.AsNoTracking().ToListAsync();
     }
+
+    //
+    public async Task<Resource?> GetByIdAsync(Guid id) {
+        return await _db.Resources.FirstOrDefaultAsync(r => r.Id == id);
+    }
+
+    public async Task SaveAsync() {
+        await _db.SaveChangesAsync();
+    }
+
+    //
+    public async Task<bool> ExistByNameAsync(string name) {
+        return await _db.Resources.AnyAsync(r => r.GetName.Value == name);
+    }
+    public async Task<bool> ExistByNameExceptAsync(string name, Guid exceptId) {
+        return await _db.Resources.AnyAsync(r => r.GetName.Value == name && r.Id != exceptId);
+    }
 }

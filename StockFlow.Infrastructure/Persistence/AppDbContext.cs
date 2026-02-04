@@ -37,6 +37,15 @@ public class AppDbContext : DbContext {
 
 
         modelBuilder.Entity<Resource>().HasKey(p => p.Id);
-        modelBuilder.Entity<Resource>().Property(u => u.Name).HasConversion(name => name.Value, value => new Name(value)).HasMaxLength(255); // в БД (string) // из БД
+        //modelBuilder.Entity<Resource>().Property(u => u.Name).HasConversion(name => name.Value, value => new Name(value)).HasMaxLength(255); // в БД (string) // из БД
+
+
+
+        modelBuilder.Entity<Resource>()
+        .OwnsOne(r => r.GetName, name => {
+            name.Property(n => n.Value)
+                .HasColumnName("Name")  // имя столбца в БД
+                .IsRequired();
+        });
     }
 }
