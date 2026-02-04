@@ -1,22 +1,26 @@
-using StockFlow.Domain.Aggregates;
+/*!
+ * @file Resource.cs
+ * @brief Сущность "Ресурс"
+ * @author -
+ * @copyright -
+ * @details
+ *
+ */
+using StockFlow.Domain;
 
-namespace StockFlow.Application.Resources;
+namespace StockFlow.Application;
 
-public class CreateResourceService
-{
+/// <summary>Служба создания ресурса</summary>
+public class CreateResourceService {
     private readonly IResourceRepository _repository;
 
-    public CreateResourceService(IResourceRepository repository)
-    {
+    public CreateResourceService(IResourceRepository repository) {
         _repository = repository;
     }
 
-    public async Task<ResourceDto> CreateAsync(string name, CancellationToken ct)
-    {
-        var resource = new Resource(name);
-
-        await _repository.AddAsync(resource, ct);
-
-        return new ResourceDto(resource.Id, resource.Name);
+    public async Task<Result> CreateAsync(string name) {
+        var resource = new Resource(new Name(name));
+        await _repository.AddAsync(resource);
+        return Result.Success();
     }
 }

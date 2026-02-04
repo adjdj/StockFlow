@@ -10,9 +10,9 @@ using StockFlow.Infrastructure.Persistence;
 
 namespace StockFlow.Infrastructure.Migrations
 {
-    [DbContext(typeof(StockFlowDbContext))]
-    [Migration("20260130164854_InitialResources")]
-    partial class InitialResources
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20260204130203_AddProductCategory")]
+    partial class AddProductCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace StockFlow.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
 
-            modelBuilder.Entity("StockFlow.Domain.Aggregates.Resource", b =>
+            modelBuilder.Entity("StockFlow.Domain.Resource", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -28,6 +28,7 @@ namespace StockFlow.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

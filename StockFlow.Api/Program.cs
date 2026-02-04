@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using StockFlow.Application.Resources;
+using StockFlow.Application;
 using StockFlow.Infrastructure.Persistence;
-using StockFlow.Infrastructure.Resources;
+using StockFlow.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 // 1.Регистрируем API Explorer (собирает метаданные о endpoints)
@@ -12,34 +12,30 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddDbContext<StockFlowDbContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 // Настраивает Entity Framework Core (EF Core) в приложении .NET, регистрируя контекст БД AppDbContext в контейнере внедрения зависимостей (DI) и указывая использовать SQLite с файлом базы данных stockflow.db.
-builder.Services.AddDbContext<StockFlowDbContext>(options =>
-{
+builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseSqlite("Data Source=stockflow.db");
 });
 
 builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
 builder.Services.AddScoped<CreateResourceService>();
-builder.Services.AddScoped<GetResourcesService>();
-builder.Services.AddScoped<DeleteResourceService>();
 
-builder.Services.AddCors(options =>
-{
-options.AddDefaultPolicy(policy =>
-policy.AllowAnyOrigin()
-.AllowAnyHeader()
-.AllowAnyMethod());
+// Cors
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(policy =>
+    policy.AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod());
 });
 
 var app = builder.Build();
 
+// Cors
 app.UseCors();
 
 // Middleware
-
 // Swagger включен только для разработки
 // app.Environment.IsDevelopment() - встроенный чекер среды выполнения в ASP.NET Core, который возвращает true, если приложение запущено в среде Development (разработка)
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -48,27 +44,36 @@ app.UseHttpsRedirection();
 
 app.MapPost("/resources", async (
     string name,
-    CreateResourceService service,
-    CancellationToken ct) =>
-{
-    var result = await service.CreateAsync(name, ct);
-    return Results.Created($"/resources/{result.Id}", result);
-});
+    CreateResourceService service) => {
+        var result = await service.CreateAsync(name);
 
-app.MapGet("/resources", async (
-    GetResourcesService service,
-    CancellationToken ct) =>
-{
-    return Results.Ok(await service.GetAllAsync(ct));
-});
+        //return Results.Created($"/resources/{result.Id}", result);
+        return result.Type switch {
+            Result.ResultType.Success => Results.NoContent(),
+            Result.ResultType.BadRequest => Results.BadRequest(result.Error),
+            Result.ResultType.NotFound => Results.NotFound(result.Error),
+            Result.ResultType.Conflict => Results.Conflict(result.Error),
+            _ => Results.StatusCode(500)
+        };
+    })
+    .WithName("CreateResource")
+    .Produces(204)
+    .Produces(400)
+    .Produces(404)
+    .Produces(409);
 
-app.MapDelete("/resources/{id:guid}", async (
-    Guid id,
-    DeleteResourceService service,
-    CancellationToken ct) =>
-{
-    await service.DeleteAsync(id, ct);
-    return Results.NoContent();
-});
+//app.MapGet("/resources", async (
+//    GetResourcesService service,
+//    CancellationToken ct) => {
+//        return Results.Ok(await service.GetAllAsync(ct));
+//    });
+
+//app.MapDelete("/resources/{id:guid}", async (
+//    Guid id,
+//    DeleteResourceService service,
+//    CancellationToken ct) => {
+//        await service.DeleteAsync(id, ct);
+//        return Results.NoContent();
+//    });
 
 app.Run();

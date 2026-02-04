@@ -9,15 +9,15 @@ using StockFlow.Infrastructure.Persistence;
 
 namespace StockFlow.Infrastructure.Migrations
 {
-    [DbContext(typeof(StockFlowDbContext))]
-    partial class StockFlowDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
 
-            modelBuilder.Entity("StockFlow.Domain.Aggregates.Resource", b =>
+            modelBuilder.Entity("StockFlow.Domain.Resource", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -25,6 +25,7 @@ namespace StockFlow.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
