@@ -1,12 +1,12 @@
 /*!
  * @file Entity.cs
- * @brief Общий базовый класс для агрегатов
+ * @brief Общий базовый класс для сущностей
  * @author -
  * @copyright -
  * @details
  *
  */
-namespace StockFlow.Domain.Common;
+namespace StockFlow.Domain;
 
 /// <summary>
 /// Базовая сущность с идентификатором

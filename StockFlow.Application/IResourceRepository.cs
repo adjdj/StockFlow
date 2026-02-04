@@ -1,14 +1,17 @@
-// Application **не знает**, как хранятся данные
-// - только контракт
+/*!
+ * @file IResourceRepository.cs
+ * @brief Интерфейс доступа к репозиторию
+ * @author -
+ * @copyright -
+ * @details
+ *
+ */
+using StockFlow.Domain;
 
+namespace StockFlow.Application;
 
-using StockFlow.Domain.Aggregates;
-
-namespace StockFlow.Application.Resources;
-
-public interface IResourceRepository
-{
-    Task AddAsync(Resource resource, CancellationToken ct);
-    Task DeleteAsync(Guid id, CancellationToken ct);
-    Task<IReadOnlyList<Resource>> GetAllAsync(CancellationToken ct);
+public interface IResourceRepository {
+    Task AddAsync(Resource resource);
+    Task DeleteAsync(Guid id);
+    Task<IReadOnlyList<Resource>> GetAllAsync();
 }
