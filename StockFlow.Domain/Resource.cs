@@ -17,7 +17,7 @@ public class Resource : Entity {
     /// <summary>value-object: Имя</summary>
     private Name _name = null!;
 
-    public Name Name { get => _name; }
+    public Name GetName { get => _name; }
 
     //private Resource() { }
 
