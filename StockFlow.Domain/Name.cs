@@ -31,6 +31,10 @@ public class Name {
         return !String.IsNullOrWhiteSpace(value) && ValidationRegex.IsMatch(value);
     }
 
+    //public override string ToString() {
+    //    return Value;
+    //}
+
     //public override Boolean Equals(Object? obj)
     //{
     //    return obj is Name other &&

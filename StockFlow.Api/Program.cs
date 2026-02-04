@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 
 builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
 builder.Services.AddScoped<CreateResourceService>();
+builder.Services.AddScoped<GetResourcesService>();
 
 // Cors
 builder.Services.AddCors(options => {
@@ -62,11 +63,12 @@ app.MapPost("/resources", async (
     .Produces(404)
     .Produces(409);
 
-//app.MapGet("/resources", async (
-//    GetResourcesService service,
-//    CancellationToken ct) => {
-//        return Results.Ok(await service.GetAllAsync(ct));
-//    });
+app.MapGet("/resources", async (
+    GetResourcesService service) => {
+        return Results.Ok(await service.GetAllAsync());
+    })
+    .WithName("GetResources")
+    .Produces<IEnumerable<ResourceDto>>(200);
 
 //app.MapDelete("/resources/{id:guid}", async (
 //    Guid id,

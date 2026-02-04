@@ -28,8 +28,6 @@ public class ResourceRepository : IResourceRepository {
     }
 
     public async Task<IReadOnlyList<Resource>> GetAllAsync() {
-        return await _db.Resources
-            .AsNoTracking()
-            .ToListAsync();
+        return await _db.Resources.AsNoTracking().ToListAsync();
     }
 }
