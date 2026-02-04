@@ -1,6 +1,6 @@
 /*!
- * @file Resource.cs
- * @brief Сущность "Ресурс"
+ * @file CreateResourceService.cs
+ * @brief -
  * @author -
  * @copyright -
  * @details
