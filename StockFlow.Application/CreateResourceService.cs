@@ -19,6 +19,12 @@ public class CreateResourceService {
     }
 
     public async Task<Result> CreateAsync(string name) {
+
+        var isNameTaken = await _repository.ExistByNameAsync(name);
+        if (isNameTaken) {
+            return Result.Conflict($"Resource with name '{name}' already exists");
+        }
+
         var resource = new Resource(new Name(name));
         await _repository.AddAsync(resource);
         return Result.Success();

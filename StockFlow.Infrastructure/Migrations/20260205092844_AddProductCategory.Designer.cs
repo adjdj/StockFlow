@@ -11,7 +11,7 @@ using StockFlow.Infrastructure.Persistence;
 namespace StockFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260204130203_AddProductCategory")]
+    [Migration("20260205092844_AddProductCategory")]
     partial class AddProductCategory
     {
         /// <inheritdoc />
