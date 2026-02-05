@@ -20,7 +20,7 @@ public class GetResourcesService {
 
         return resources
             //.Select(r => new ResourceDto(r.Id, r.Name.ToString()))
-            .Select(r => new ResourceDto(r.Id, r.GetName.Value))
+            .Select(r => new ResourceDto(r.Id, r.Name.Value))
             .ToList();
     }
 }

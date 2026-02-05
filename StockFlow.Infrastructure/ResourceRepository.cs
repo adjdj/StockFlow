@@ -42,9 +42,11 @@ public class ResourceRepository : IResourceRepository {
 
     //
     public async Task<bool> ExistByNameAsync(string name) {
-        return await _db.Resources.AnyAsync(r => r.GetName.Value == name);
+        //return await _db.Resources.AnyAsync(r => r.Name.Value == name);
+        return await _db.Resources.AnyAsync(r => r.Name == new Name(name));
     }
     public async Task<bool> ExistByNameExceptAsync(string name, Guid exceptId) {
-        return await _db.Resources.AnyAsync(r => r.GetName.Value == name && r.Id != exceptId);
+        //return await _db.Resources.AnyAsync(r => r.Name.Value == name && r.Id != exceptId);
+        return await _db.Resources.AnyAsync(r => r.Name == new Name(name) && r.Id != exceptId);
     }
 }
