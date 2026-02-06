@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockFlow.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using StockFlow.Infrastructure.Persistence;
 namespace StockFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260206142620_AddBalance")]
+    partial class AddBalance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
@@ -24,7 +27,6 @@ namespace StockFlow.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Quantity")
-                        .HasPrecision(18, 3)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("ResourceId")
