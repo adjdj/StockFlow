@@ -11,8 +11,7 @@ packages/
 *.nupkg
 
 ## Файлы решений и проектов
-*.sln
-*.csproj.user
+
 *.vbproj.user
 *.fsproj.user
 
@@ -55,7 +54,7 @@ coverage/
 
 ## Файлы анализаторов и линтеров
 .sonarlint/
-.editorconfig
+
 
 ## macOS
 .DS_Store
