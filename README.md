@@ -77,3 +77,8 @@ dotnet add StockFlowTest.Api package Swashbuckle.AspNetCore
 dotnet tool install --global dotnet-ef
 export PATH="$PATH:$HOME/.dotnet/tools"
 dotnet ef --version
+
+## Создание миграций и обновление БД
+### Из StockFlow.Api
+dotnet ef migrations add New --project ../StockFlow.Infrastructure
+dotnet ef database update --project ../StockFlow.Infrastructure
