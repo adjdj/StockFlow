@@ -26,6 +26,9 @@ public class Balance {
         Quantity = 0;
     }
 
+    // Навигационное свойство
+    // EF поймет связь автоматически
+    public Resource? Resource { get; set; } = null;
 
     public void Increase(decimal amount) {
         if (amount <= 0)

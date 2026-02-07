@@ -5,17 +5,20 @@ using StockFlow.Infrastructure.Persistence;
 
 namespace StockFlow.Infrastructure;
 
-public class InventoryBalanceRepository : IBalanceRepository {
+public class BalanceRepository : IBalanceRepository {
     private readonly AppDbContext _db;
 
 
-    public InventoryBalanceRepository(AppDbContext db) {
+    public BalanceRepository(AppDbContext db) {
         _db = db;
     }
 
 
     public async Task<Balance?> GetAsync(Guid resourceId/*,UnitOfMeasure unit*/) {
         return await _db.Balances.FirstOrDefaultAsync(x => x.ResourceId == resourceId /*&& x.Unit.Code == unit.Code*/);
+    }
+    public async Task<IReadOnlyList<Balance>> GetAllAsync() {
+        return await _db.Balances.AsNoTracking().ToListAsync();
     }
 
 
