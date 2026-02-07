@@ -32,7 +32,10 @@ namespace StockFlow.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Balances");
+                    b.HasIndex("ResourceId")
+                        .IsUnique();
+
+                    b.ToTable("Balances", (string)null);
                 });
 
             modelBuilder.Entity("StockFlow.Domain.Resource", b =>
@@ -49,6 +52,17 @@ namespace StockFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Resources");
+                });
+
+            modelBuilder.Entity("StockFlow.Domain.Balance", b =>
+                {
+                    b.HasOne("StockFlow.Domain.Resource", "Resource")
+                        .WithOne()
+                        .HasForeignKey("StockFlow.Domain.Balance", "ResourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resource");
                 });
 #pragma warning restore 612, 618
         }

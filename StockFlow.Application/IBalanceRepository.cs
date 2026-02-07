@@ -14,4 +14,5 @@ public interface IBalanceRepository {
     Task<Balance?> GetAsync(Guid resourceId/*, UnitOfMeasure unit*/);
     Task AddAsync(Balance balance);
     Task SaveAsync();
+    Task<IReadOnlyList<Balance>> GetAllAsync();
 }

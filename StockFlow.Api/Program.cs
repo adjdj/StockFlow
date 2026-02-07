@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using StockFlow.Application;
 using StockFlow.Infrastructure.Persistence;
 using StockFlow.Infrastructure;
+using StockFlow.Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 // 1.Регистрируем API Explorer (собирает метаданные о endpoints)
@@ -21,6 +22,9 @@ builder.Services.AddScoped<CreateResourceService>();
 builder.Services.AddScoped<GetResourcesService>();
 builder.Services.AddScoped<DeleteResourceService>();
 builder.Services.AddScoped<UpdateResourceService>();
+//Balance
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<IncreaseBalanceService>();
 
 // Cors
 builder.Services.AddCors(options => {
@@ -102,5 +106,7 @@ app.MapPut("/resources/{id:guid}", async (
     .Produces(400)
     .Produces(404)
     .Produces(409);
+
+app.MapIncreaseBalances();
 
 app.Run();
