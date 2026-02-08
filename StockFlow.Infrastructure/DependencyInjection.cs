@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StockFlow.Application;
+using StockFlow.Application.Repositories;
 using StockFlow.Infrastructure.Persistence;
-using StockFlow.Infrastructure;
 
 namespace StockFlow.Infrastructure;
 

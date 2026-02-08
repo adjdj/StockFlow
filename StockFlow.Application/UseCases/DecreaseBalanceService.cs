@@ -7,17 +7,16 @@
  *
  */
 using StockFlow.Domain;
+using StockFlow.Application.Repositories;
 
-namespace StockFlow.Application;
+namespace StockFlow.Application.UseCases;
 
 public class DecreaseBalanceService {
     private readonly IBalanceRepository _repository;
 
-
     public DecreaseBalanceService(IBalanceRepository repository) {
         _repository = repository;
     }
-
 
     public async Task DecreaseAsync(Guid resourceId/*, UnitOfMeasure unit*/, decimal amount) {
 
@@ -26,7 +25,6 @@ public class DecreaseBalanceService {
         var balance = await _repository.GetAsync(resourceId/*, unit*/);
 
         if (balance is null) {
-
             // Инавриант - ошибка
             return;
             balance = new Balance(resourceId/*, unit*/);

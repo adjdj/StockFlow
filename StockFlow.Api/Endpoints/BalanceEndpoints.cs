@@ -7,8 +7,8 @@
  *
  */
 using Microsoft.EntityFrameworkCore;
-using StockFlow.Application;
-using StockFlow.Domain;
+using StockFlow.Application.Contracts;
+using StockFlow.Application.UseCases;
 using StockFlow.Infrastructure.Persistence;
 
 namespace StockFlow.Api.Endpoints;
@@ -39,3 +39,8 @@ public static class BalanceEndpoints {
         return app;
     }
 }
+
+
+
+
+

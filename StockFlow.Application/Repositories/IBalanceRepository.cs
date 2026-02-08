@@ -8,7 +8,7 @@
  */
 using StockFlow.Domain;
 
-namespace StockFlow.Application;
+namespace StockFlow.Application.Repositories;
 
 public interface IBalanceRepository {
     Task<Balance?> GetAsync(Guid resourceId/*, UnitOfMeasure unit*/);

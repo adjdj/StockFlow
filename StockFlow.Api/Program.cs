@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using StockFlow.Application;
+using StockFlow.Application.UseCases;
+using StockFlow.Application.Repositories;
 using StockFlow.Infrastructure.Persistence;
 using StockFlow.Infrastructure;
 using StockFlow.Api.Endpoints;

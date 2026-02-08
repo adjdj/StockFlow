@@ -7,8 +7,9 @@
  *
  */
 using StockFlow.Domain;
+using StockFlow.Application.Repositories;
 
-namespace StockFlow.Application;
+namespace StockFlow.Application.UseCases;
 
 /// <summary>Служба создания ресурса</summary>
 public class UpdateResourceService {
