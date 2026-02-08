@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using StockFlow.Application;
+using StockFlow.Application.Repositories;
 using StockFlow.Domain;
 using StockFlow.Infrastructure.Persistence;
 

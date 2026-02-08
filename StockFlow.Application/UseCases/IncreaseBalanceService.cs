@@ -7,8 +7,9 @@
  *
  */
 using StockFlow.Domain;
+using StockFlow.Application.Repositories;
 
-namespace StockFlow.Application;
+namespace StockFlow.Application.UseCases;
 
 public class IncreaseBalanceService {
     private readonly IBalanceRepository _repository;
@@ -17,7 +18,6 @@ public class IncreaseBalanceService {
     public IncreaseBalanceService(IBalanceRepository repository) {
         _repository = repository;
     }
-
 
     public async Task IncreaseAsync(Guid resourceId/*, UnitOfMeasure unit*/, decimal amount) {
 

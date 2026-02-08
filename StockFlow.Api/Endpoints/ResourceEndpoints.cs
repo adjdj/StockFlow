@@ -7,6 +7,8 @@
  *
  */
 using StockFlow.Application;
+using StockFlow.Application.Contracts;
+using StockFlow.Application.UseCases;
 
 namespace StockFlow.Api.Endpoints;
 

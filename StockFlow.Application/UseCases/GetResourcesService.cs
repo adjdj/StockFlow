@@ -6,7 +6,10 @@
  * @details
  *
  */
-namespace StockFlow.Application;
+using StockFlow.Application.Contracts;
+using StockFlow.Application.Repositories;
+
+namespace StockFlow.Application.UseCases;
 
 public class GetResourcesService {
     private readonly IResourceRepository _repository;

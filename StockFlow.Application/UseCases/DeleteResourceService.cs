@@ -6,7 +6,8 @@
  * @details
  *
  */
-namespace StockFlow.Application;
+using StockFlow.Application.Repositories;
+namespace StockFlow.Application.UseCases;
 
 /// <summary>Служба удаления ресурса</summary>
 public class DeleteResourceService {

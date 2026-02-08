@@ -8,7 +8,7 @@
  */
 using StockFlow.Domain;
 
-namespace StockFlow.Application;
+namespace StockFlow.Application.Repositories;
 
 public interface IResourceRepository {
     Task AddAsync(Resource resource);
