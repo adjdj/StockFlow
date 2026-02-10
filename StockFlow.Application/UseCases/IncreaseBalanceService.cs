@@ -30,6 +30,7 @@ public class IncreaseBalanceService {
             await _repository.AddAsync(balance);
         }
 
+        Console.WriteLine("Ошшшибка: Имя = {0} amount = {1} ID = {2}", balance.Resource?.Name, amount, resourceId);
         balance.Increase(amount);
 
         await _repository.SaveAsync();

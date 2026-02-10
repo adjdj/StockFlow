@@ -31,6 +31,8 @@ public class Balance {
     public Resource? Resource { get; set; } = null;
 
     public void Increase(decimal amount) {
+
+        Console.WriteLine("Ошшшибка: amount = {0}", amount);
         if (amount <= 0)
             throw new DomainException("Amount must be positive");
 
