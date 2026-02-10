@@ -26,6 +26,7 @@ builder.Services.AddScoped<UpdateResourceService>();
 //Balance
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IncreaseBalanceService>();
+builder.Services.AddScoped<IncreaseBalanceHandler>();
 
 // Cors
 builder.Services.AddCors(options => {
