@@ -6,6 +6,7 @@ namespace StockFlow.Infrastructure.Persistence;
 public class AppDbContext : DbContext {
     public DbSet<Resource> Resources => Set<Resource>();
     public DbSet<Unit> Units => Set<Unit>();
+    public DbSet<Client> Clients => Set<Client>();
     public DbSet<Balance> Balances => Set<Balance>();
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) {
