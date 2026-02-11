@@ -13,15 +13,18 @@ using System.Text.RegularExpressions;
 namespace StockFlow.Domain;
 
 public class Address {
-    private static readonly Regex ValidationRegex = new Regex(
-        @"^" +
-        // Разрешаем: буквы, цифры, пробелы, дефисы, точки, запятые, апострофы, скобки, слэш
-        @"[\\p{L}\\p{M}\\p{N}\\s\\-\\.,'\\/\\(\\)]" +
-        // Минимум 5 символов, максимум 500 (можно настроить)
-        "{5,500}" +
-        "$",
-        RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant
-    );
+    //private static readonly Regex ValidationRegex = new Regex(
+    //    @"^" +
+    //    // Разрешаем: буквы, цифры, пробелы, дефисы, точки, запятые, апострофы, скобки, слэш
+    //    @"[\\p{L}\\p{M}\\p{N}\\s\\-\\.,'\\/\\(\\)]" +
+    //    // Минимум 5 символов, максимум 500 (можно настроить)
+    //    "{5,500}" +
+    //    "$",
+    //    RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant
+    //);
+
+    private static readonly Regex ValidationRegex = new Regex(@"^[\p{L}\p{M}\p{N}]{1,100}\z", RegexOptions.Singleline | RegexOptions.Compiled);
+
 
     public Address(string value) {
         if (!IsValid(value)) {
