@@ -17,14 +17,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseSqlite("Data Source=stockflow.db");
 });
-
+// Resource
 builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
 builder.Services.AddScoped<CreateResourceService>();
 builder.Services.AddScoped<GetResourcesService>();
 builder.Services.AddScoped<DeleteResourceService>();
 builder.Services.AddScoped<UpdateResourceService>();
-//Balance
+// Unit
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<CreateUnitHandler>();
+builder.Services.AddScoped<ReadUnitsHandler>();
+builder.Services.AddScoped<UpdateUnitHandler>();
+builder.Services.AddScoped<DeleteUnitHandler>();
+//Balance
 builder.Services.AddScoped<IncreaseBalanceService>();
 builder.Services.AddScoped<IncreaseBalanceHandler>();
 
@@ -52,6 +57,7 @@ if (app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 
 app.MapResources();
+app.MapUnits();
 app.MapBalances();
 
 app.Run();

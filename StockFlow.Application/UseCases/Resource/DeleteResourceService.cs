@@ -1,5 +1,5 @@
 /*!
- * @file CreateResourceService.cs
+ * @file DeleteResourceService.cs
  * @brief -
  * @author -
  * @copyright -
