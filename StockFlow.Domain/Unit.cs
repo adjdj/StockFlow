@@ -1,6 +1,6 @@
 ﻿/*!
- * @file Resource.cs
- * @brief Сущность "Ресурс"
+ * @file Unit.cs
+ * @brief Сущность "Единица измерения"
  * @author -
  * @copyright -
  * @details
@@ -9,10 +9,10 @@
 namespace StockFlow.Domain;
 
 /// <summary>
-/// Представляет сущность "Ресурс" в системе.
-/// Содержит основные свойства товара: идентификатор, название, состояние.
+/// Представляет сущность "Единица измерения" в системе.
+/// Содержит основные свойства: идентификатор, название, состояние.
 /// </summary>
-public class Resource : Entity {
+public class Unit : Entity {
 
     /// <summary>value-object: Имя</summary>
     private Name _name = null!;
@@ -20,13 +20,13 @@ public class Resource : Entity {
     public Name Name { get => _name; }
 
     /// <summary>Конструктор для репозитория</summary>
-    private Resource() { }
+    private Unit() { }
 
-    public Resource(Name name) {
+    public Unit(Name name) {
         SetName(name);
     }
 
-    /// <summary>Изменить имя ресурса</summary>
+    /// <summary>Изменить название единицы измерения</summary>
     public void Rename(Name name) {
         SetName(name);
     }
