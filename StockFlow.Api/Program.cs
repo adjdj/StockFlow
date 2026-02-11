@@ -29,6 +29,11 @@ builder.Services.AddScoped<CreateUnitHandler>();
 builder.Services.AddScoped<ReadUnitsHandler>();
 builder.Services.AddScoped<UpdateUnitHandler>();
 builder.Services.AddScoped<DeleteUnitHandler>();
+// Client
+builder.Services.AddScoped<CreateClientHandler>();
+builder.Services.AddScoped<ReadClientsHandler>();
+builder.Services.AddScoped<UpdateClientHandler>();
+builder.Services.AddScoped<DeleteClientHandler>();
 //Balance
 builder.Services.AddScoped<IncreaseBalanceService>();
 builder.Services.AddScoped<IncreaseBalanceHandler>();
@@ -58,6 +63,7 @@ app.UseHttpsRedirection();
 
 app.MapResources();
 app.MapUnits();
+app.MapClients();
 app.MapBalances();
 
 app.Run();
