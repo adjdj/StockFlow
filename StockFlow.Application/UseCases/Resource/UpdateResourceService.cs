@@ -27,9 +27,6 @@ public class UpdateResourceService {
         //if (await _repository.ExistByNameExceptAsync(newName, id))
         //    throw new InvalidOperationException($"Resource with name '{newName}' already exists");
 
-
-
-
         var isNameTaken = await _repository.ExistByNameExceptAsync(newName, id);
         if (isNameTaken) {
             return Result.Conflict($"Resource with name '{newName}' already exists");
