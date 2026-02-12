@@ -12,12 +12,12 @@ using StockFlow.Application.Repositories;
 namespace StockFlow.Application.UseCases;
 
 /// <summary>Служба создания единицы измерения</summary>
-public class CreateReceiptUseCase(IReceiptRepository receiptRepository, IBalanceRepository balanceRepository, IUnitOfWork unitOfWork) {
+public class CreateReceiptHandler(IReceiptRepository receiptRepository, IBalanceRepository balanceRepository, IUnitOfWork unitOfWork) {
     private readonly IReceiptRepository _receiptRepository = receiptRepository;
     private readonly IBalanceRepository _balanceRepository = balanceRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<Guid> Execute(CreateReceiptCommand command) {
+    public async Task<Guid> Handle(CreateReceiptCommand command) {
 
         if (await _receiptRepository.ExistsByNumberAsync(command.Number))
             throw new DomainException("Документ с таким номером уже существует");

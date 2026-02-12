@@ -27,6 +27,7 @@ public class Balance {
     }
 
     public Resource? Resource { get; set; } = null; // EF
+    public Unit? Unit { get; set; } = null; // EF
 
     public void Increase(decimal amount) {
 
