@@ -9,6 +9,7 @@
 using Microsoft.EntityFrameworkCore;
 using StockFlow.Application.Contracts;
 using StockFlow.Application.UseCases;
+using StockFlow.Infrastructure;
 using StockFlow.Infrastructure.Persistence;
 
 namespace StockFlow.Api.Endpoints;
@@ -21,20 +22,13 @@ public static class ReceiptEndpoints {
             await handler.Handle(new CreateReceiptCommand(request.number, request.date, request.items));
             return Results.Ok();
         });
-        //
-        //app.MapGet("/balances", async (AppDbContext db) => {
-        //    var balances = await db.Balances
-        //        // Включаем навигационное свойство Resource (не ResourceId!)
-        //        .Include(b => b.Resource)
-        //        .Select(b => new BalanceDto(
-        //            b.Id,
-        //            b.Resource.Id,          // Id из Resources
-        //            b.Resource.Name.Value, // Name из Resources
-        //            /*b.Unit.Code,*/       // если нужно, добавьте Include для Unit
-        //            b.Quantity
-        //        )).ToListAsync();
-        //    return balances;
-        //});
+
+
+        app.MapGet("/receipts", async (AppDbContext db) => {
+            var repo = new ReceiptQueryRepository(db);
+            var receipts = await repo.GetAllAsync();
+            return Results.Ok(receipts);
+        });
 
         return app;
     }
