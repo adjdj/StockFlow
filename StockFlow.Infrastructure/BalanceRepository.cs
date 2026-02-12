@@ -13,9 +13,8 @@ public class BalanceRepository : IBalanceRepository {
         _db = db;
     }
 
-
-    public async Task<Balance?> GetAsync(Guid resourceId/*,UnitOfMeasure unit*/) {
-        return await _db.Balances.FirstOrDefaultAsync(x => x.ResourceId == resourceId /*&& x.Unit.Code == unit.Code*/);
+    public async Task<Balance?> GetAsync(Guid resourceId, Guid unitId) {
+        return await _db.Balances.FirstOrDefaultAsync(x => x.ResourceId == resourceId && x.UnitId == unitId);
     }
     public async Task<IReadOnlyList<Balance>> GetAllAsync() {
         return await _db.Balances.AsNoTracking().ToListAsync();

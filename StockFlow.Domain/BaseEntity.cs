@@ -11,7 +11,7 @@ namespace StockFlow.Domain;
 /// <summary>
 /// Базовая сущность с идентификатором
 /// </summary>
-public abstract class Entity
-{
+public abstract class BaseEntity {
     public Guid Id { get; protected set; } = Guid.NewGuid();
+    public bool IsArchived { get; set; } = false;
 }

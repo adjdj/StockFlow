@@ -12,7 +12,7 @@ namespace StockFlow.Domain;
 /// Представляет сущность "Клиент" в системе.
 /// Содержит основные свойства: идентификатор, наименование, адрес, состояние(?).
 /// </summary>
-public class Client : Entity {
+public class Client : BaseEntity {
 
     /// <summary>value-object: Имя</summary>
     private Name _name = null!;

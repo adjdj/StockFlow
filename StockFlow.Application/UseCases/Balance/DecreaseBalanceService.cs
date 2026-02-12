@@ -18,16 +18,16 @@ public class DecreaseBalanceService {
         _repository = repository;
     }
 
-    public async Task DecreaseAsync(Guid resourceId/*, UnitOfMeasure unit*/, decimal amount) {
+    public async Task DecreaseAsync(Guid resourceId, Guid unitId, decimal amount) {
 
         // amount > 0
 
-        var balance = await _repository.GetAsync(resourceId/*, unit*/);
+        var balance = await _repository.GetAsync(resourceId, unitId);
 
         if (balance is null) {
-            // Инавриант - ошибка
+            // Инвариант - ошибка
             return;
-            balance = new Balance(resourceId/*, unit*/);
+            balance = new Balance(resourceId, unitId);
             await _repository.AddAsync(balance);
         }
 

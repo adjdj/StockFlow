@@ -12,29 +12,27 @@ public class Balance {
     public Guid Id { get; private set; }
 
     public Guid ResourceId { get; private set; }
-    //public Unit UnitId { get; private set; } = null!;
+    public Guid UnitId { get; private set; }
 
     public decimal Quantity { get; private set; }
 
     private Balance() { }
 
 
-    public Balance(Guid resourceId/*, Unit unit*/) {
+    public Balance(Guid resourceId, Guid unitId) {
         Id = Guid.NewGuid();
         ResourceId = resourceId;
-        //Unit = unit;
+        UnitId = unitId;
         Quantity = 0;
     }
 
-    // Навигационное свойство
-    // EF поймет связь автоматически
-    public Resource? Resource { get; set; } = null;
+    public Resource? Resource { get; set; } = null; // EF
 
     public void Increase(decimal amount) {
 
         Console.WriteLine("Ошшшибка: amount = {0}", amount);
         if (amount <= 0)
-            throw new DomainException("Amount must be positive");
+            throw new DomainException("Неверное количество");
 
         Quantity += amount;
     }
@@ -42,10 +40,10 @@ public class Balance {
 
     public void Decrease(decimal amount) {
         if (amount <= 0)
-            throw new DomainException("Amount must be positive");
+            throw new DomainException("Неверное количество");
 
         if (Quantity < amount)
-            throw new DomainException("Insufficient balance");
+            throw new DomainException("Недостаточный баланс");
 
         Quantity -= amount;
     }

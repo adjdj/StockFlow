@@ -12,7 +12,7 @@ namespace StockFlow.Domain;
 /// Представляет сущность "Ресурс" в системе.
 /// Содержит основные свойства товара: идентификатор, название, состояние.
 /// </summary>
-public class Resource : Entity {
+public class Resource : BaseEntity {
 
     /// <summary>value-object: Имя</summary>
     private Name _name = null!;
