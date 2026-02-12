@@ -31,6 +31,9 @@ public class IncreaseBalanceHandler {
             if (command.ResourceId == Guid.Empty)
                 throw new DomainException("ResourceId не может быть пустым");
 
+            if (command.UnitId == Guid.Empty)
+                throw new DomainException("UnitId не может быть пустым");
+
             // Получаем баланс по ResourceId
             var balance = await _repository.GetAsync(command.ResourceId, command.UnitId);
 
@@ -45,33 +48,6 @@ public class IncreaseBalanceHandler {
 
             // Сохраняем изменения
             await _repository.SaveAsync();
-
-
-            Console.WriteLine("Ошшшибка: amount = {0}", command.Amount);
-
-            // Лог (можно заменить на ILogger)
-            //Console.WriteLine(
-            //(
-            //    "Баланс обновлён: ResourceId = {0}, Amount = {1}, Новый баланс = {2}",
-            //    command.ResourceId,
-            //    command.Amount,
-            //    balance.Amount
-            //);
         }
-
-        //    // amount > 0
-        //
-        //    var balance = await _repository.GetAsync(resourceId/*, unit*/);
-        //
-        //    if (balance is null) {
-        //        balance = new Balance(resourceId/*, unit*/);
-        //        await _repository.AddAsync(balance);
-        //    }
-        //
-        //    Console.WriteLine("Ошшшибка: Имя = {0} amount = {1} ID = {2}", balance.Resource?.Name, amount, resourceId);
-        //    balance.Increase(amount);
-        //
-        //    await _repository.SaveAsync();
-        //}
     }
 }

@@ -27,8 +27,8 @@ public class DecreaseBalanceService {
         if (balance is null) {
             // Инвариант - ошибка
             return;
-            balance = new Balance(resourceId, unitId);
-            await _repository.AddAsync(balance);
+            //balance = new Balance(resourceId, unitId);
+            //await _repository.AddAsync(balance);
         }
 
         // amount > 0

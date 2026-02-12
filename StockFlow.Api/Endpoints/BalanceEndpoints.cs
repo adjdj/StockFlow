@@ -18,12 +18,12 @@ public static class BalanceEndpoints {
 
 
         app.MapPost("/balances/change", async (ChangeBalanceRequest request, IncreaseBalanceService service) => {
-            await service.IncreaseAsync(request.ResourceId, request.Unit, request.Amount);
+            await service.IncreaseAsync(request.ResourceId, request.UnitId, request.Amount);
             return Results.Ok();
         });
 
         app.MapPost("/balances/changes", async (ChangeBalanceRequest[] requests, IncreaseBalanceHandler service) => {
-            var commands = requests.Select(r => new IncreaseBalanceCommand(r.ResourceId, r.Unit, (int)r.Amount)).ToArray();
+            var commands = requests.Select(r => new IncreaseBalanceCommand(r.ResourceId, r.UnitId, (int)r.Amount)).ToArray();
             await service.IncreaseAsync(commands);
             return Results.Ok();
         });
@@ -34,8 +34,9 @@ public static class BalanceEndpoints {
                 .Include(b => b.Resource)
                 .Select(b => new BalanceDto(
                     b.Id,
-                    b.Resource.Id,          // Id из Resources
+                    //b.Resource.Id,          // Id из Resources
                     b.Resource.Name.Value, // Name из Resources
+                    b.Unit.Name.Value, // Name из Resources
                     /*b.Unit.Code,*/       // если нужно, добавьте Include для Unit
                     b.Quantity
                 )).ToListAsync();

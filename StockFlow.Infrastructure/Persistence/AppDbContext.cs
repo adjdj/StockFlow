@@ -10,6 +10,7 @@ public class AppDbContext : DbContext {
     public DbSet<Balance> Balances => Set<Balance>();
     public DbSet<ReceiptDocument> ReceiptDocuments => Set<ReceiptDocument>();
     public DbSet<ShipmentDocument> ShipmentDocuments => Set<ShipmentDocument>();
+    public DbSet<ReceiptItem> ReceiptItems { get; set; }
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) {
     }
@@ -44,10 +45,20 @@ public class AppDbContext : DbContext {
         modelBuilder.Entity<Resource>().Property(u => u.Name).HasConversion(name => name.Value, value => new Name(value)).HasMaxLength(255); // в БД (string) // из БД
 
 
-        modelBuilder.Entity<ReceiptDocument>()
-            .HasIndex(x => x.Number)
-            .IsUnique();
+        modelBuilder.Entity<ReceiptDocument>(builder => {
+            builder.HasKey(d => d.Id);
+            builder.Property(d => d.Number).IsRequired();
 
+            builder.HasMany(d => d.Items)
+                   .WithOne(i => i.ReceiptDocument)
+                   .HasForeignKey(i => i.ReceiptDocumentId)
+                   .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<ReceiptItem>(builder => {
+            builder.HasKey(i => i.Id);
+            builder.Property(i => i.Quantity).IsRequired();
+        });
         modelBuilder.Entity<ShipmentDocument>()
             .HasIndex(x => x.Number)
             .IsUnique();

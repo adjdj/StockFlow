@@ -22,15 +22,12 @@ public class IncreaseBalanceService {
     public async Task IncreaseAsync(Guid resourceId, Guid unitId, decimal amount) {
 
         // amount > 0
-
         var balance = await _repository.GetAsync(resourceId, unitId);
 
         if (balance is null) {
             balance = new Balance(resourceId, unitId);
             await _repository.AddAsync(balance);
         }
-
-        Console.WriteLine("Ошшшибка: Имя = {0} amount = {1} ID = {2}", balance.Resource?.Name, amount, resourceId);
         balance.Increase(amount);
 
         await _repository.SaveAsync();

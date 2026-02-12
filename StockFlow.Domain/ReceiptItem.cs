@@ -14,6 +14,13 @@ namespace StockFlow.Domain;
 /// </summary>
 public class ReceiptItem {
     public Guid Id { get; private set; }
+
+    // Внешний ключ к ReceiptDocument
+    public Guid ReceiptDocumentId { get; private set; }
+
+    // Навигация к агрегату
+    public ReceiptDocument ReceiptDocument { get; private set; }
+
     public Guid ResourceId { get; private set; }
     public Guid UnitId { get; private set; }
     public decimal Quantity { get; private set; }

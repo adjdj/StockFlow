@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockFlow.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using StockFlow.Infrastructure.Persistence;
 namespace StockFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260212181237_AddDocs2")]
+    partial class AddDocs2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
@@ -35,9 +38,7 @@ namespace StockFlow.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UnitId");
-
-                    b.HasIndex("ResourceId", "UnitId")
+                    b.HasIndex("ResourceId")
                         .IsUnique();
 
                     b.ToTable("Balances", (string)null);
@@ -203,20 +204,12 @@ namespace StockFlow.Infrastructure.Migrations
             modelBuilder.Entity("StockFlow.Domain.Balance", b =>
                 {
                     b.HasOne("StockFlow.Domain.Resource", "Resource")
-                        .WithMany()
-                        .HasForeignKey("ResourceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("StockFlow.Domain.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithOne()
+                        .HasForeignKey("StockFlow.Domain.Balance", "ResourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Resource");
-
-                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("StockFlow.Domain.ReceiptItem", b =>
