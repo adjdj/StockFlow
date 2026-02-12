@@ -15,12 +15,8 @@ namespace StockFlow.Application.UseCases;
 /// Содержит основные свойства товара: идентификатор товара, количество.
 /// Command - для бизне-сценария
 /// </summary>
-public class IncreaseBalanceCommand {
-    public Guid ResourceId { get; }
-    public decimal Amount { get; }
-
-    public IncreaseBalanceCommand(Guid resourceId, int amount) {
-        ResourceId = resourceId;
-        Amount = amount;
-    }
+public class IncreaseBalanceCommand(Guid resourceId, Guid unitId, int amount) {
+    public Guid ResourceId { get; } = resourceId;
+    public Guid UnitId { get; } = unitId;
+    public decimal Amount { get; } = amount;
 }

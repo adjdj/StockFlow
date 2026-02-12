@@ -8,6 +8,8 @@ public class AppDbContext : DbContext {
     public DbSet<Unit> Units => Set<Unit>();
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Balance> Balances => Set<Balance>();
+    public DbSet<ReceiptDocument> ReceiptDocuments => Set<ReceiptDocument>();
+    public DbSet<ShipmentDocument> ShipmentDocuments => Set<ShipmentDocument>();
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) {
     }
@@ -41,10 +43,14 @@ public class AppDbContext : DbContext {
         modelBuilder.Entity<Resource>().HasKey(p => p.Id);
         modelBuilder.Entity<Resource>().Property(u => u.Name).HasConversion(name => name.Value, value => new Name(value)).HasMaxLength(255); // в БД (string) // из БД
 
-        //modelBuilder.Entity<Balance>().HasKey(x => x.Id);
-        //modelBuilder.Entity<Balance>().Property(x => x.Quantity).HasPrecision(18, 3).IsRequired();
-        //modelBuilder.Entity<Balance>().Property(x => x.ResourceId).IsRequired();
 
+        modelBuilder.Entity<ReceiptDocument>()
+            .HasIndex(x => x.Number)
+            .IsUnique();
+
+        modelBuilder.Entity<ShipmentDocument>()
+            .HasIndex(x => x.Number)
+            .IsUnique();
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }

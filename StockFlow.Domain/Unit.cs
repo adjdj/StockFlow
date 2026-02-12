@@ -12,7 +12,7 @@ namespace StockFlow.Domain;
 /// Представляет сущность "Единица измерения" в системе.
 /// Содержит основные свойства: идентификатор, название, состояние.
 /// </summary>
-public class Unit : Entity {
+public class Unit : BaseEntity {
 
     /// <summary>value-object: Имя</summary>
     private Name _name = null!;

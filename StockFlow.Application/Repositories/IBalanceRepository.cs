@@ -11,7 +11,7 @@ using StockFlow.Domain;
 namespace StockFlow.Application.Repositories;
 
 public interface IBalanceRepository {
-    Task<Balance?> GetAsync(Guid resourceId/*, UnitOfMeasure unit*/);
+    Task<Balance?> GetAsync(Guid resourceId, Guid unitId);
     Task AddAsync(Balance balance);
     Task SaveAsync();
     Task<IReadOnlyList<Balance>> GetAllAsync();

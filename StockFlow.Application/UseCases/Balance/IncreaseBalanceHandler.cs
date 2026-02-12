@@ -32,11 +32,11 @@ public class IncreaseBalanceHandler {
                 throw new DomainException("ResourceId не может быть пустым");
 
             // Получаем баланс по ResourceId
-            var balance = await _repository.GetAsync(command.ResourceId);
+            var balance = await _repository.GetAsync(command.ResourceId, command.UnitId);
 
             // Если баланса нет — создаём новый
             if (balance == null) {
-                balance = new Balance(command.ResourceId);
+                balance = new Balance(command.ResourceId, command.UnitId);
                 await _repository.AddAsync(balance);
             }
 
