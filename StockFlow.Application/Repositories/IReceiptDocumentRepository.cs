@@ -10,7 +10,7 @@ using StockFlow.Domain;
 
 namespace StockFlow.Application.Repositories;
 
-public interface IReceiptRepository {
+public interface IReceiptDocumentRepository {
     Task<bool> ExistsByNumberAsync(string number);
     Task AddAsync(ReceiptDocument document);
 }

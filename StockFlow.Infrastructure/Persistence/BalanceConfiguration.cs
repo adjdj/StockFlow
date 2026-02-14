@@ -43,7 +43,6 @@ public class BalanceConfiguration : IEntityTypeConfiguration<Balance> {
             .HasForeignKey(b => b.ResourceId)
             .OnDelete(DeleteBehavior.Restrict);  // явное поведение
 
-
         builder.Property(b => b.ResourceId)
             .IsRequired();
 
@@ -52,7 +51,6 @@ public class BalanceConfiguration : IEntityTypeConfiguration<Balance> {
             .WithMany()
             .HasForeignKey(b => b.UnitId)
             .OnDelete(DeleteBehavior.Restrict);
-
 
         builder.Property(b => b.UnitId)
             .IsRequired();
@@ -64,5 +62,7 @@ public class BalanceConfiguration : IEntityTypeConfiguration<Balance> {
         // Уникальный индекс только если требуется по логике
         builder.HasIndex(b => new { b.ResourceId, b.UnitId })
             .IsUnique();  // убрать, если не нужно
+
+        //builder.Property<byte[]>("RowVersion").IsRowVersion();
     }
 }

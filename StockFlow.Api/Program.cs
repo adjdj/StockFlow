@@ -17,14 +17,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseSqlite("Data Source=stockflow.db");
 });
+
+// Infrastructure
+builder.Services.AddInfrastructure(builder.Configuration);
 // Resource
-builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
+//builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
 builder.Services.AddScoped<CreateResourceService>();
 builder.Services.AddScoped<GetResourcesService>();
 builder.Services.AddScoped<DeleteResourceService>();
 builder.Services.AddScoped<UpdateResourceService>();
 // Unit
-builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<CreateUnitHandler>();
 builder.Services.AddScoped<ReadUnitsHandler>();
 builder.Services.AddScoped<UpdateUnitHandler>();

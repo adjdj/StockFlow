@@ -12,8 +12,8 @@ using StockFlow.Application.Repositories;
 namespace StockFlow.Application.UseCases;
 
 /// <summary>Служба создания единицы измерения</summary>
-public class CreateReceiptHandler(IReceiptRepository receiptRepository, IBalanceRepository balanceRepository, IUnitOfWork unitOfWork) {
-    private readonly IReceiptRepository _receiptRepository = receiptRepository;
+public class CreateReceiptHandler(IReceiptDocumentRepository receiptRepository, IBalanceRepository balanceRepository, IUnitOfWork unitOfWork) {
+    private readonly IReceiptDocumentRepository _receiptRepository = receiptRepository;
     private readonly IBalanceRepository _balanceRepository = balanceRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 

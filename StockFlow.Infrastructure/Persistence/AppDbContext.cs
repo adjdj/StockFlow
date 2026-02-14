@@ -26,43 +26,6 @@ public class AppDbContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         // Мост между вашими настройками и внутренними механизмами фреймворка
         base.OnModelCreating(modelBuilder);
-
-        // Явно указываем первичный ключ для таблиц
-        //modelBuilder.Entity<Product>().HasKey(p => p.Id);
-        //modelBuilder.Entity<StockItem>().HasKey(s => s.ProductId);
-
-        /// <summary>
-        /// Настраивает отношение один‑к‑одному между StockItem и Product:
-        /// - HasOne(s => s.Product): у StockItem есть одно связанное Product.
-        /// - WithOne(): у Product может быть не более одного StockItem (без навигационного свойства).
-        /// - HasForeignKey: внешний ключ ProductId расположен в сущности StockItem.
-        /// </summary>
-        // Связь 1 к 1 (товар-остаток)
-        //modelBuilder.Entity<StockItem>().HasOne(s => s.Product).WithOne().HasForeignKey<StockItem>(s => s.ProductId);
-
-
-        modelBuilder.Entity<Resource>().HasKey(p => p.Id);
-        modelBuilder.Entity<Resource>().Property(u => u.Name).HasConversion(name => name.Value, value => new Name(value)).HasMaxLength(255); // в БД (string) // из БД
-
-
-        modelBuilder.Entity<ReceiptDocument>(builder => {
-            builder.HasKey(d => d.Id);
-            builder.Property(d => d.Number).IsRequired();
-
-            builder.HasMany(d => d.Items)
-                   .WithOne(i => i.ReceiptDocument)
-                   .HasForeignKey(i => i.ReceiptDocumentId)
-                   .OnDelete(DeleteBehavior.Cascade);
-        });
-
-        modelBuilder.Entity<ReceiptItem>(builder => {
-            builder.HasKey(i => i.Id);
-            builder.Property(i => i.Quantity).IsRequired();
-        });
-        modelBuilder.Entity<ShipmentDocument>()
-            .HasIndex(x => x.Number)
-            .IsUnique();
-
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 }
