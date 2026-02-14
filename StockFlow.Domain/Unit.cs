@@ -13,26 +13,27 @@ namespace StockFlow.Domain;
 /// Содержит основные свойства: идентификатор, название, состояние.
 /// </summary>
 public class Unit : BaseEntity {
+    /// <summary>value-object: Название</summary>
+    public Name Name { get; private set; } = null!;
 
-    /// <summary>value-object: Имя</summary>
-    private Name _name = null!;
-
-    public Name Name { get => _name; }
-
-    /// <summary>Конструктор для репозитория</summary>
+    /// <summary>Конструктор для EF</summary>
     private Unit() { }
 
+    /// <summary>Сущность "Единица измерения" в системе (конструктор)</summary>
+    /// <param name="name">Наименование</param>
     public Unit(Name name) {
         SetName(name);
     }
 
-    /// <summary>Изменить название единицы измерения</summary>
-    public void Rename(Name name) {
-        SetName(name);
+    /// <summary>Загрузить имя ресурса</summary>
+    /// <param name="name">Наименование</param>
+    private void SetName(Name name) {
+        Name = name ?? throw new ArgumentNullException(nameof(name));
     }
 
-    /// <summary>Загрузить имя ресурса</summary>
-    private void SetName(Name name) {
-        _name = name ?? throw new ArgumentNullException(nameof(name));
+    /// <summary>Изменить название единицы измерения</summary>
+    /// <param name="name">Новое наименование</param>
+    public void Rename(Name name) {
+        SetName(name);
     }
 }

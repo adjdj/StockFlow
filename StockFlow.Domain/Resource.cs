@@ -15,24 +15,26 @@ namespace StockFlow.Domain;
 public class Resource : BaseEntity {
 
     /// <summary>value-object: Имя</summary>
-    private Name _name = null!;
+    public Name Name { get; private set; } = null!;
 
-    public Name Name { get => _name; }
-
-    /// <summary>Конструктор для репозитория</summary>
+    /// <summary>Конструктор для EF</summary>
     private Resource() { }
 
+    /// <summary>Сущность "Ресурс" в системе (конструктор)</summary>
+    /// <param name="name">Наименование</param>
     public Resource(Name name) {
         SetName(name);
     }
 
     /// <summary>Изменить имя ресурса</summary>
+    /// <param name="name">Наименование</param>
     public void Rename(Name name) {
         SetName(name);
     }
 
     /// <summary>Загрузить имя ресурса</summary>
+    /// <param name="name">Наименование</param>
     private void SetName(Name name) {
-        _name = name ?? throw new ArgumentNullException(nameof(name));
+        Name = name ?? throw new ArgumentNullException(nameof(name));
     }
 }

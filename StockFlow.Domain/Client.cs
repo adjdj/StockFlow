@@ -10,44 +10,48 @@ namespace StockFlow.Domain;
 
 /// <summary>
 /// Представляет сущность "Клиент" в системе.
-/// Содержит основные свойства: идентификатор, наименование, адрес, состояние(?).
+/// Содержит основные свойства: идентификатор, наименование, адрес, состояние.
 /// </summary>
 public class Client : BaseEntity {
 
-    /// <summary>value-object: Имя</summary>
-    private Name _name = null!;
+    /// <summary>value-object: Название</summary>
+    public Name Name { get; private set; } = null!;
 
     /// <summary>value-object: Адрес</summary>
-    private Address _address = null!;
+    public Address Address { get; private set; } = null!;
 
-    public Name Name { get => _name; }
-    public Address Address { get => _address; }
-
-    /// <summary>Конструктор для репозитория</summary>
+    /// <summary>Конструктор для EF</summary>
     private Client() { }
 
+    /// <summary>Сущность "Клиент" в системе (конструктор)</summary>
+    /// <param name="name">Наименование</param>
+    /// <param name="address">Адрес</param>
     public Client(Name name, Address address) {
         SetName(name);
         SetAddress(address);
     }
+    /// <summary>Загрузить имя клиента</summary>
+    /// <param name="name">Наименование</param>
+    private void SetName(Name name) {
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+    }
+
+    /// <summary>Загрузить адрес клиента</summary>
+    /// <param name="address">Адрес</param>
+    private void SetAddress(Address address) {
+        Address = address ?? throw new ArgumentNullException(nameof(address));
+    }
 
     /// <summary>Изменить имя клиента</summary>
+    /// <param name="name">Наименование</param>
     public void Rename(Name name) {
         SetName(name);
     }
 
-    /// <summary>Загрузить имя клиента</summary>
-    private void SetName(Name name) {
-        _name = name ?? throw new ArgumentNullException(nameof(name));
-    }
 
     /// <summary>Изменить адрес клиента</summary>
+    /// <param name="address">Адрес</param>
     public void ReplaceAddress(Address address) {
         SetAddress(address);
-    }
-
-    /// <summary>Загрузить адрес клиента</summary>
-    private void SetAddress(Address address) {
-        _address = address ?? throw new ArgumentNullException(nameof(address));
     }
 }

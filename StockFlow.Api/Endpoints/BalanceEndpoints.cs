@@ -32,12 +32,12 @@ public static class BalanceEndpoints {
             var balances = await db.Balances
                 // Включаем навигационное свойство Resource (не ResourceId!)
                 .Include(b => b.Resource)
+                //.Where(b => b.Resource != null)
                 .Select(b => new BalanceDto(
                     b.Id,
                     //b.Resource.Id,          // Id из Resources
-                    b.Resource.Name.Value, // Name из Resources
-                    b.Unit.Name.Value, // Name из Resources
-                    /*b.Unit.Code,*/       // если нужно, добавьте Include для Unit
+                    b.Resource != null ? b.Resource.Name.Value : "N/A",// Name из Resources
+                    b.Unit != null ? b.Unit.Name.Value : "N/A", // Name из Unit
                     b.Quantity
                 )).ToListAsync();
             return balances;

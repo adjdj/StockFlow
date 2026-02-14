@@ -14,8 +14,11 @@ public class ReceiptDocumentRepository : IReceiptDocumentRepository {
     }
 
     public async Task<bool> ExistsByNumberAsync(string number) {
+        //await;
         return true;
     }
 
-    public async Task AddAsync(ReceiptDocument document) { }
+    public async Task AddAsync(ReceiptDocument document) {
+        //await; 
+    }
 }

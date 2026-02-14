@@ -4,7 +4,7 @@
  * @author -
  * @copyright -
  * @details
- *
+ *  ЗАГОТОВКА
  */
 namespace StockFlow.Domain;
 
