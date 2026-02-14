@@ -28,6 +28,7 @@ public class CreateResourceService {
 
         var resource = new Resource(new Name(name));
         await _repository.AddAsync(resource);
+        // !!! add UnitOfWork
         return Result.Success();
     }
 }

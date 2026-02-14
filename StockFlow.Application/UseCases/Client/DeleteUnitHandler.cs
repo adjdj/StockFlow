@@ -15,5 +15,6 @@ namespace StockFlow.Application.UseCases;
 public class DeleteClientHandler(IClientRepository repository) {
     private readonly IClientRepository _repository = repository;
 
+    // !!! add UnitOfWork->SaveAsync()
     public Task Handle(DeleteClientCommand command) => _repository.DeleteAsync(command.Id);
 }

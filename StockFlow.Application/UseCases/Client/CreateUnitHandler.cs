@@ -21,6 +21,7 @@ public class CreateClientHandler(IClientRepository repository) {
             return Result.Conflict($"Unit with name '{command.Name}' already exists");
         }
         var client = new Client(new Name(command.Name), new Address(command.Address));
+        // !!! add UnitOfWork->SaveAsync()
         await _repository.AddAsync(client);
         return Result.Success();
     }

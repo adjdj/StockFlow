@@ -47,6 +47,7 @@ public class IncreaseBalanceHandler {
             balance.Increase(command.Amount);
 
             // Сохраняем изменения
+            // !!! перейти UnitOfWork->SaveAsync()
             await _repository.SaveAsync();
         }
     }

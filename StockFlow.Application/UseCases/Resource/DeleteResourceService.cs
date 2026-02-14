@@ -17,5 +17,6 @@ public class DeleteResourceService {
         _repository = repository;
     }
 
+    // !!! add UnitOfWork
     public Task DeleteAsync(Guid id) => _repository.DeleteAsync(id);
 }

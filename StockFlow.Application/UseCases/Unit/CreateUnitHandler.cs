@@ -25,6 +25,7 @@ public class CreateUnitHandler {
             return Result.Conflict($"Unit with name '{command.Name}' already exists");
         }
         var unit = new Unit(new Name(command.Name));
+        // !!! add UnitOfWork
         await _repository.AddAsync(unit);
         return Result.Success();
     }

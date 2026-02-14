@@ -30,6 +30,7 @@ public class IncreaseBalanceService {
         }
         balance.Increase(amount);
 
+        // !!! перейти UnitOfWork->SaveAsync()
         await _repository.SaveAsync();
     }
 }

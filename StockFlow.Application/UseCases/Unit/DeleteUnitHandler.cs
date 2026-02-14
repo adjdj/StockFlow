@@ -15,5 +15,6 @@ namespace StockFlow.Application.UseCases;
 public class DeleteUnitHandler(IUnitRepository repository) {
     private readonly IUnitRepository _repository = repository;
 
+    // !!! add UnitOfWork
     public Task Handle(DeleteUnitCommand command) => _repository.DeleteAsync(command.Id);
 }

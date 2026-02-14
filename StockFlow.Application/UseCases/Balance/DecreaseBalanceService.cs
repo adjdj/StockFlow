@@ -34,6 +34,7 @@ public class DecreaseBalanceService {
         // amount > 0
         balance.Decrease(Math.Abs(amount));
 
+        // !!! перейти UnitOfWork->SaveAsync()
         await _repository.SaveAsync();
     }
 }

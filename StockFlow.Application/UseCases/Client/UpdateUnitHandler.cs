@@ -22,6 +22,7 @@ public class UpdateClientHandler(IClientRepository repository) {
         }
         client.Rename(new Name(command.Name));
         client.ReplaceAddress(new Address(command.Address));
+        // !!! перейти UnitOfWork->SaveAsync()
         await _repository.SaveAsync();
         return Result.Success();
     }

@@ -21,6 +21,7 @@ public class UpdateUnitHandler(IUnitRepository repository) {
             return Result.Conflict($"Resource with name '{command.Name}' already exists");
         }
         resource.Rename(new Name(command.Name));
+        // !!! перейти UnitOfWork->SaveAsync();
         await _repository.SaveAsync();
         return Result.Success();
     }

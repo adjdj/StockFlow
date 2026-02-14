@@ -32,6 +32,7 @@ public class UpdateResourceService {
             return Result.Conflict($"Resource with name '{newName}' already exists");
         }
         resource.Rename(new Name(newName));
+        // !!! перейти UnitOfWork->SaveAsync()
         await _repository.SaveAsync();
 
         return Result.Success();
